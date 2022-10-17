@@ -38,4 +38,39 @@
         return result;
     }
 
+    function game(){
+        let playerScore = 0;
+        let computerScore = 0;
+        for (let i = 0; i<5; i++){
+            let computerChoice = getComputerChoice();
+            let playerChoice = getPlayerChoice();
+            let roundResult = playRound(playerChoice,computerChoice);
+            if (roundResult === "playerwin") {
+                playerScore += 1;
+                console.log("The player won that round");
+            }
+            else if (roundResult === "computerwin") {
+                computerScore += 1;
+                console.log("The computer won that round");
+            }
+            else {
+                console.log("That round was a draw");
+            }
+            console.log(`The current score is: ${playerScore}-${computerScore} (player - computer)`);
+        }
+
+        if (playerScore > computerScore) {
+            console.log("The player has won the game!");
+        }
+        else if (playerScore < computerScore) {
+            console.log("The computer has won the game!");
+        }
+        else {
+            console.log("The game was a draw!");
+        }
+
+    }
+
+    game();
+
 })()
