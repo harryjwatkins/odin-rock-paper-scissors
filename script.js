@@ -24,6 +24,18 @@
         }
     }
 
-    console.log(getPlayerChoice());
+    function playRound(playerChoice, computerChoice){
+        let result;
+        if (playerChoice === computerChoice) {
+            result = "draw";
+        } // Situations where player wins
+        else if ( (playerChoice === "paper" && computerChoice === "rock") || (playerChoice === "scissors" && computerChoice === "paper") ||(playerChoice === "rock" && computerChoice === "scissors")){
+            result = "playerwin";
+        }
+        else {
+            result = "computerwin";
+        }
+        return result;
+    }
 
 })()
