@@ -10,5 +10,20 @@
         return choices[randomIndex];
     }
 
+    function getPlayerChoice(){
+        let userChoice = prompt("Please choose rock, paper or scissors");
+        userChoice = userChoice.toLowerCase();
+        switch (userChoice) {
+            case "rock":
+            case "scissors":
+            case "paper":
+                return userChoice;
+            default:
+                console.log("You did not enter one of rock, paper or scissors");
+                getPlayerChoice();
+        }
+    }
+
+    console.log(getPlayerChoice());
 
 })()
