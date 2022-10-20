@@ -1,0 +1,35 @@
+body {
+    background-color: #FC766AFF;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#button-container {
+    display: flex;
+    width: 700px;
+    justify-content: space-between;
+}
+
+button {
+    width: 200px;
+    height: 200px;
+    background-color: #5B84B1FF;
+    font-size: 30px;
+}
+
+#textbox {
+    display: flex;
+    width: 700px;
+    margin-top: 40px;
+}
