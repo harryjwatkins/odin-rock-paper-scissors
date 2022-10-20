@@ -2,6 +2,19 @@
 
     "use strict"
 
+    const rockbutton = document.querySelector("#rock");
+    const paperbutton = document.querySelector("#paper");
+    const scissorsbutton = document.querySelector("#scissors");
+    const buttons = document.querySelectorAll("button");
+
+    function getPlayerChoice(e) {
+        return e.target.id;
+    }
+
+    for (let i = 0; i<3; i++){
+        buttons[i].addEventListener("click", getPlayerChoice);
+    }
+
     function getComputerChoice(){
         const choices = ["rock","paper","scissors"];
         // Generate a random number between 0-2
@@ -10,7 +23,7 @@
         return choices[randomIndex];
     }
 
-    function getPlayerChoice(){
+    /* function getPlayerChoice(){
         let userChoice = prompt("Please choose rock, paper or scissors");
         userChoice = userChoice.toLowerCase();
         switch (userChoice) {
@@ -22,7 +35,7 @@
                 console.log("You did not enter one of rock, paper or scissors");
                 getPlayerChoice();
         }
-    }
+    } */
 
     function playRound(playerChoice, computerChoice){
         let result;
