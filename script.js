@@ -7,9 +7,9 @@
     const scissorsbutton = document.querySelector("#scissors");
     const buttons = document.querySelectorAll("button");
 
-    function getPlayerChoice(e) {
-        return e.target.id;
-    }
+    rockbutton.addEventListener("click",playRound);
+    paperbutton.addEventListener("click",playRound);
+    scissorsbutton.addEventListener("click",playRound);
 
     function getComputerChoice(){
         const choices = ["rock","paper","scissors"];
@@ -33,51 +33,33 @@
         return result;
     }
 
-    function playRound() {
-        for (let i = 0; i<3; i++){
-            buttons[i].addEventListener("click", (e) => {
-                let roundResult = (getResult(getPlayerChoice(e),getComputerChoice()));
-                return roundResult;
-            });
-        
+    function scoreCounter(roundResult) {
+        if (roundResult === "playerwin") {
+            playerScore += 1;
+            console.log("The player won that round");
         }
-    }
-    
-   
-
-    function game(){
-        let playerScore = 0;
-        let computerScore = 0;
-        for (let i = 0; i<5; i++){
-            let computerChoice = getComputerChoice();
-            let playerChoice = getPlayerChoice();
-            let roundResult = playRound(playerChoice,computerChoice);
-            if (roundResult === "playerwin") {
-                playerScore += 1;
-                console.log("The player won that round");
-            }
-            else if (roundResult === "computerwin") {
-                computerScore += 1;
-                console.log("The computer won that round");
-            }
-            else {
-                console.log("That round was a draw");
-            }
-            console.log(`The current score is: ${playerScore}-${computerScore} (player - computer)`);
-        }
-
-        if (playerScore > computerScore) {
-            console.log("The player has won the game!");
-        }
-        else if (playerScore < computerScore) {
-            console.log("The computer has won the game!");
+        else if (roundResult === "computerwin") {
+            computerScore += 1;
+            console.log("The computer won that round");
         }
         else {
-            console.log("The game was a draw!");
+            console.log("That round was a draw");
         }
-
+        console.log(`The current score is: ${playerScore}-${computerScore} (player - computer)`);
     }
 
-    playRound();
+    let playerScore = 0;
+    let computerScore = 0;
+    function playRound() {
+        let playerChoice = this.id;
+        let computerChoice = getComputerChoice();
+        let result = getResult(playerChoice,computerChoice);
+        scoreCounter(result);
+        if (playerScore === 3 || computerScore === 3) {
+            rockbutton.removeEventListener("click",playRound);
+            paperbutton.removeEventListener("click",playRound);
+            scissorsbutton.removeEventListener("click",playRound);
+        }
+    }    
 
 })()
