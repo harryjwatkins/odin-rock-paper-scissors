@@ -5,7 +5,7 @@
     const rockbutton = document.querySelector("#rock");
     const paperbutton = document.querySelector("#paper");
     const scissorsbutton = document.querySelector("#scissors");
-    const buttons = document.querySelectorAll("button");
+    const textbox = document.querySelector("#textbox");
 
     rockbutton.addEventListener("click",playRound);
     paperbutton.addEventListener("click",playRound);
@@ -55,11 +55,26 @@
         let computerChoice = getComputerChoice();
         let result = getResult(playerChoice,computerChoice);
         scoreCounter(result);
-        if (playerScore === 3 || computerScore === 3) {
-            rockbutton.removeEventListener("click",playRound);
-            paperbutton.removeEventListener("click",playRound);
-            scissorsbutton.removeEventListener("click",playRound);
+        let resultText;
+        switch (result) {
+            case "playerwin": resultText = "The player won that round!"; break;
+            case "computerwin": resultText = "The computer won that round!"; break;
+            case "draw": resultText = "That round was a draw!"; break;
+        }
+        textbox.textContent = `${resultText} The current score is: ${playerScore}-${computerScore} (player - computer)`;
+        if (playerScore === 5) {
+            removeListeners();
+            textbox.textContent = `The final score is: ${playerScore}-${computerScore} (player - computer). The player wins!!`;
+        } else if (computerScore === 5) {
+            removeListeners();
+            textbox.textContent = `The final score is: ${playerScore}-${computerScore} (player - computer). The computer wins!!`;
         }
     }    
+
+    function removeListeners() {
+        rockbutton.removeEventListener("click",playRound);
+        paperbutton.removeEventListener("click",playRound);
+        scissorsbutton.removeEventListener("click",playRound);
+    }
 
 })()
