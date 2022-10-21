@@ -30,6 +30,8 @@ button {
 
 #textbox {
     display: flex;
+    justify-content: center;
+    font-size: 22px;
     width: 700px;
     margin-top: 40px;
 }
